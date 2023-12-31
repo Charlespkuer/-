@@ -16,12 +16,19 @@ root = tk.Tk()
 name = "Collapser"
 year = 2023
 total_posts = 656
-calculate = round(total_posts / (20+total_posts) * 100, 2)
 private_posts = 49
 max_goods = 81
+most_active_date = "2023.2.08"
 max_daily_pyq_num = 9
 
+calculate = round(total_posts / (20+total_posts) * 100, 2)
 public_posts = total_posts - private_posts
+if calculate > 90:
+    comment0 = "被评为超级大V！"
+elif calculate > 50:
+    comment0 = "相当积极！"
+else:
+    comment0 = "看来朋友圈不是很合您的口味"
 if (total_posts - public_posts) / total_posts < 0.5:
     comment = "坦坦荡荡是好文明！"
 else:
@@ -30,7 +37,6 @@ if max_goods > 50:
     comment1 = "可真是位社交达人！"
 else:
     comment1 = "还需努力啊！"
-date = "2023.2.08"
 if max_daily_pyq_num > 5:
     comment2 = "像一枚自激辐射的高能粒子！"
 else:
@@ -39,10 +45,10 @@ else:
 # 使用字符串格式化将变量插入到字符串中
 images = [
     f'微信用户{name}\n这是您的\n{year}\n年度报告\n请注意查收哦',
-    f'今年您总共发布了\n{total_posts}\n条朋友圈\n打败了{calculate}%的用户！！\n（瞎算的）',
+    f'今年您总共发布了\n{total_posts}\n条朋友圈\n打败了{calculate}%的用户！！\n{comment0}',
     f'其中，公开朋友圈数量为\n{public_posts}\n部分可见朋友圈数量为\n{private_posts}\n{comment}',
     f'您今年最多得到了\n{max_goods}\n位朋友的点赞\n{comment1}\n',
-    f'在{date}这特殊一天内\n您总共发布了\n{max_daily_pyq_num}\n条朋友圈！\n{comment2}',
+    f'在{most_active_date}这特殊一天内\n您总共发布了\n{max_daily_pyq_num}\n条朋友圈！\n{comment2}',
     f'\n感谢您的观看！\n祝您新年快乐！\n（本报告由Clarles制作）\n'
 ]
 current_image = 0
@@ -64,14 +70,14 @@ def random_color():
 texts = []
 for i in range(5):
     x = 0.45 + random.uniform(-0.07, 0.07)
-    y = 0.70 - i*0.13 + random.uniform(-0.03, 0.03)
+    y = 0.85 - i*0.16 + random.uniform(-0.06, 0.06)
     # 添加圆形泡泡
-    text = ax.text(x, y, images[current_image].split('\n')[i], horizontalalignment='center', verticalalignment='center', transform=ax.transAxes, fontsize=20, rotation=20)
+    text = ax.text(x, y, images[current_image].split('\n')[i], horizontalalignment='center', verticalalignment='center', transform=ax.transAxes, fontsize=22, rotation=20)
     if random.random() < 0.5:
-        text.set_fontsize(24)
-    # 如果文本是数字，则增大为40号字体
+        text.set_fontsize(26)
+    # 如果文本是数字，则增大为44号字体
     if images[current_image].split('\n')[i].isdigit():
-        text.set_fontsize(40)
+        text.set_fontsize(44)
     texts.append(text)
 for i in range(10):
     x = random.uniform(0, 1)
@@ -122,18 +128,18 @@ def change_text(texts, direction):
         ax.add_patch(circle)
     for i in range(5):
         x = 0.45 + random.uniform(-0.07, 0.07)
-        y = 0.9 - i*0.2 + random.uniform(-0.07, 0.07)
+        y = 0.85 - i*0.16 + random.uniform(-0.06, 0.06)
         text = images[current_image].split('\n')[i]
         texts[i].set_text(text)
         texts[i].set_position((x, y))
         # 50%的概率增大一号字体
         if random.random() < 0.5:
-            texts[i].set_fontsize(24)
+            texts[i].set_fontsize(26)
         else:
-            texts[i].set_fontsize(20)
-        # 如果文本是数字，则增大为40号字体
+            texts[i].set_fontsize(22)
+        # 如果文本是数字，则增大为44号字体
         if text.isdigit():
-            texts[i].set_fontsize(40)
+            texts[i].set_fontsize(44)
     # 更改背景颜色
     fig.set_facecolor(random_color())
     # 重新绘制图形
