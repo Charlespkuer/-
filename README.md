@@ -2,4 +2,4 @@
 
 （win）
 
-可能需numpy、script包
+需numpy、script包
