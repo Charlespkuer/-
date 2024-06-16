@@ -1,6 +1,4 @@
-# 菜（基本使用AI指导制作）
-大佬勿喷qwq
-可能需要下载python包
+# 看个乐呵即可
 
 （win）
 可能需numpy、script包
